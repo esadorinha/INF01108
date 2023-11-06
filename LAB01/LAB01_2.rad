@@ -1,0 +1,21 @@
+; LABORATÓRIO 1 - Ex. 2:
+
+ORG 128
+
+C:	DB
+Vetor:	DAB [50]
+
+
+ORG 0
+
+inicio:	LDR X, #0
+	LDR B, #0
+	STR B, C
+while:	LDR A, Vetor, X
+	JZ fim
+	ADD B, Vetor, X	
+	STR B, C
+	ADD X, #1
+	JMP while
+
+fim:	HLT

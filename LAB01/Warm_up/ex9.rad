@@ -1,0 +1,23 @@
+ORG 128
+
+Y:	DB
+XH:	DB
+XL:	DB
+
+
+ORG 0
+
+inicio:	LDR A, Y
+	LDR X, #4
+
+passo1:	JZ passo2
+	SHR A
+	SUB X, #1
+	JMP passo1
+
+passo2:	STR A, XH
+	LDR A, Y
+	AND A, #15
+	STR A, XL
+
+fim:	HLT

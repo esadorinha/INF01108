@@ -1,0 +1,55 @@
+; LABORATÓRIO 1 - Ex. 4:
+
+ORG 128
+R:	DB
+Pont:	DB 138
+Atual:	DB
+Final:	DB
+T:	DB
+
+ORG 138
+Vetor:	DAB [50]
+
+
+ORG 0
+
+inicio:	LDR X, #0
+	STR X, T
+
+tam:	LDR A, Vetor, X
+	JZ cont1
+	ADD X, #1
+	JMP tam
+
+cont1:	STR X, T
+	LDR A, T
+	ADD A, Pont
+	STR A, Final
+	LDR A, Pont
+	STR A, Atual
+	LDR X, #0
+	STR X, R
+
+while:	LDR A, Final
+	SUB A, Atual
+	JN result
+	LDR A, Vetor, X
+	SUB A, Vetor+T	;??
+	JZ cont2
+	JMP fim
+cont2:	ADD X, #1
+	LDR A, T
+	SUB A, #1
+	STR A, T
+	LDR A, Atual
+	ADD A, #1
+	STR A, Atual
+	LDR A, Final
+	SUB A, #1
+	STR A, Final
+	JMP while
+
+result:	LDR A, #1
+	STR A, R
+
+fim:	HLT

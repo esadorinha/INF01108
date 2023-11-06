@@ -1,0 +1,14 @@
+ORG 128
+
+y:	DB
+z:	DB
+
+
+ORG 0
+
+inicio:	LDR A, y
+	SUB A, z
+	JN fim
+	STR A, y
+fim:	HLT
+	

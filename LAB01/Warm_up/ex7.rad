@@ -1,0 +1,23 @@
+ORG 128
+
+XH:	DB
+XL:	DB
+YH:	DB
+YL:	DB
+ZH:	DB
+ZL:	DB
+
+
+ORG 0
+
+inicio:	LDR A, XH
+	ADD A, YH
+	LDR B, XL
+	ADD B, YL
+	JC soma1
+	JMP reg
+soma1:	ADD A, #1
+reg:	STR A, ZH
+	STR B, ZL
+fim:	HLT
+	

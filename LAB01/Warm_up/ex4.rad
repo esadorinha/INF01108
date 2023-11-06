@@ -1,0 +1,14 @@
+ORG 128
+
+J: 	DB
+K: 	DB
+
+
+ORG 0
+
+inicio:	LDR A, K
+	AND A, #32
+	JZ fim
+	LDR A, K
+	STR A, J
+fim:	HLT

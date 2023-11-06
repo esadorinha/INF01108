@@ -1,0 +1,19 @@
+ORG 128
+
+XH:	DB
+XL:	DB
+YL:	DB
+ZH:	DB
+ZL:	DB
+
+
+ORG 0
+
+inicio:	LDR B, XH
+	LDR A, XL
+	SUB A, YL
+	JC reg
+	ADD B, #1
+reg:	STR A, ZL
+	STR B, ZH
+fim:	HLT

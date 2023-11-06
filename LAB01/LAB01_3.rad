@@ -1,0 +1,28 @@
+; LABORATÓRIO 1 - Ex. 3:
+
+ORG 128
+R:	DB
+S1:	DAB [40]
+
+ORG 192
+S2:	DAB [40]
+
+
+ORG 0
+
+inicio:	LDR X, #0
+	STR X, R
+	
+while:	LDR A, S1, X
+	SUB A, S2, X
+	JZ cont
+	JMP fim
+cont:	ADD X, #1
+	LDR A, S1, X
+	JZ result
+	JMP while
+
+result:	LDR A, #1
+	STR A, R
+
+fim:	HLT
