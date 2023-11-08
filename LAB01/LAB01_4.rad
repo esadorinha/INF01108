@@ -8,7 +8,7 @@ Final:	DB
 T:	DB
 
 ORG 138
-Vetor:	DAB [50]
+Vetor:	DAB 'JOIA', 0
 
 
 ORG 0
@@ -21,35 +21,41 @@ tam:	LDR A, Vetor, X
 	ADD X, #1
 	JMP tam
 
-cont1:	STR X, T
+cont1:	STR X, T	; T recebeu o tamanho da string
 	LDR A, T
+
 	ADD A, Pont
-	STR A, Final
+	SUB A, #1
+	STR A, Final	; Final recebeu o endereço do último char
+
 	LDR A, Pont
-	STR A, Atual
+	STR A, Atual	; Atual recebeu o endereço do início da string
+
 	LDR X, #0
-	STR X, R
+	STR X, R	; por padrão, R = 0
+
 
 while:	LDR A, Final
 	SUB A, Atual
-	JN result
-	LDR A, Vetor, X
-	SUB A, Vetor+T	;??
-	JZ cont2
-	JMP fim
-cont2:	ADD X, #1
-	LDR A, T
-	SUB A, #1
-	STR A, T
-	LDR A, Atual
+	JN result	; se Final e Atual se encontrarem, É um palíndromo!
+
+	LDR A, Atual, I
+	SUB A, Final, I	; compara os valores das posições Atual e Final
+
+	JZ cont2	; se forem iguais continua
+	JMP fim		; senão, termina o programa
+
+cont2:	LDR A, Atual
 	ADD A, #1
-	STR A, Atual
+	STR A, Atual	; aumenta a posição atual
+
 	LDR A, Final
 	SUB A, #1
-	STR A, Final
+	STR A, Final	; diminui a posição final
+
 	JMP while
 
 result:	LDR A, #1
-	STR A, R
+	STR A, R	; se passou no teste, muda o resultado final
 
 fim:	HLT

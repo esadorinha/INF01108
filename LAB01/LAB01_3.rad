@@ -2,27 +2,27 @@
 
 ORG 128
 R:	DB
-S1:	DAB [40]
+S1:	DAB 'Hello', 0
 
 ORG 192
-S2:	DAB [40]
+S2:	DAB 'Heloo', 0
 
 
 ORG 0
 
 inicio:	LDR X, #0
-	STR X, R
-	
+	STR X, R	; por padrão, R = 0
+
 while:	LDR A, S1, X
-	SUB A, S2, X
+	SUB A, S2, X	; compara as strings char a char
 	JZ cont
 	JMP fim
 cont:	ADD X, #1
-	LDR A, S1, X
+	LDR A, S1, X	; se o char atual é 0, a string chegou ao fim
 	JZ result
 	JMP while
 
-result:	LDR A, #1
+result:	LDR A, #1	; altera o resultado se as comparações foram bem sucedidas
 	STR A, R
 
 fim:	HLT

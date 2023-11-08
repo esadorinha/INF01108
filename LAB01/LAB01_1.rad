@@ -11,9 +11,9 @@ ORG 0
 inicio:	LDR X, #0
 	STR X, N
 while:	LDR A, Vetor, X
-	JZ fim
-	ADD X, #1
-	STR X, N
+	JZ cont
+	ADD X, #1	; adiciona 1 ao index a cada novo elemento diferente de 0
 	JMP while
+cont:	STR X, N
 
 fim:	HLT

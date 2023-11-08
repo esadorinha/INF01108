@@ -3,7 +3,7 @@
 ORG 128
 
 C:	DB
-Vetor:	DAB [50]
+Vetor:	DAB 'Hellooo', 0
 
 
 ORG 0
